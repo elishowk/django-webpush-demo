@@ -1,0 +1,41 @@
+{% load i18n static %}
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Django Webpush Notifications Demo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="static/manifest.json">
+  <link rel="apple-touch-icon" href="{% static 'notification-icon-460px.png' %}">
+  <!-- Place favicon.ico in the root directory -->
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  {% block body-content %}
+  <div>
+  {% if request.user.is_authenticated %}
+    <label>
+      <input id="webpush-subscribe-checkbox" type="checkbox"
+        data-api-url="{{ url }}"
+        data-user-devices="{{ user_active_devices }}"
+        data-application-server-key="{{ application_server_key }}">
+      <span id="webpush-subscribe-message"><!-- webpush.js updates this text--></span>
+    </label>
+  {% else %}
+    <label>{% trans "Please login to receive push notifications" %}</label>
+  {% endif %}
+  </div>
+  {% endblock %}
+  <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'webpush.js' %}"></script>
+</body>
+
+</html>
+

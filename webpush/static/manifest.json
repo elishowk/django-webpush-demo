@@ -1,0 +1,15 @@
+{
+    "name": "Django Webpush POC",
+    "short_name": "DjWebpushPOC",
+    "start_url": "/",
+    "background_color": "#0C3C26",
+    "theme_color": "#0C3C26",
+    "icons": [
+        {
+            "sizes": "460x460",
+            "src": "/static/notification-icon-460px.png",
+            "type": "image/png"
+        }
+    ],
+    "display": "standalone"
+}

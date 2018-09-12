@@ -1,0 +1,6 @@
+Django>=1.11
+django-push-notifications>=1.6
+djangorestframework
+python-dateutil
+py-vapid
+pywebpush
