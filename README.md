@@ -63,15 +63,22 @@ It features a callback storing the user response when receiving the push notific
 
  * login with your admin account at http://localhost:8000/admin
  * check the subscribe box at http://localhost:8000, then check the user's subscription status at http://localhost:8000/admin/push_notifications/webpushdevice/
+ * ![step 1: click the checkbox and allow push](step-2-allow-push-api.png)
+ * ![step 2 : check the subscription state](step-2-subscription-status-admin.png)
  * create the push notifications content at http://localhost:8000/admin/webpush/notification
- * execute the command :
+ * ![step " : create the notification contents](step-3-notification-model-admin.png)
+ * then execute the command :
 
 ```bash
     python manage.py send_webpush
+    
+  Found a device id =  8 to push the notification id = 1
 ```
 
- * wait for the notification to show on your device !
- * check the status of the notification at http://localhost:8000/admin/webpush/notification/ (`is read`) and http://localhost:8000/admin/webpush/webpushrecord/ (`is sent`)
+  * wait for the notification to show on your device !
+ ![Result : how the result displays in Chromium (disable gnome native to see buttons and images)](step-4-chromium-show-push.png)
+  * check the status of the notification at http://localhost:8000/admin/webpush/notification/ (`is read`) and http://localhost:8000/admin/webpush/webpushrecord/ (`is sent`)
+  * native notifications also can be tested on your mobile device !
 
 ## TODO
 
