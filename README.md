@@ -28,13 +28,7 @@ It features a callback storing the user response when receiving the push notific
    }
 ```
 
- * Generate public and private keys:
-
-```bash
-     vapid --sign claim.json
-```
-
- * Generate client public key (applicationServerKey)
+ * Generate client public key (applicationServerKey) and public and private keys
 
 ```bash
      vapid --applicationServerKey
@@ -46,10 +40,16 @@ It features a callback storing the user response when receiving the push notific
        Application Server Key = BEFuGfKKEFp-kEB...JlkA34llWF0xHya70
 ```
 
+## More...
+
+The web Push API specification : https://developer.mozilla.org/fr/docs/Web/API/Push_API
+A nice demonstration of VAPID is https://gauntface.github.io/simple-push-demo/
+Another nico resource from google.com :https://developers.google.com/web/fundamentals/push-notifications/sending-messages-with-web-push-libraries
+
  * Django settings:
 
- ** Create your own local_settings.py next to settings.py, and add Application Server Key to  `PUSH_NOTIFICATIONS_SETTINGS['APP_SERVER_KEY']`
- ** Modify the key WP_CLAIMS in settings.py : "sub" with the same email used in the file claim.json. Do not add the "aud", because the push servers could be Mozilla's or Google's, and django-push-notifications takes care of that
+  * Create your own local_settings.py next to settings.py, and add Application Server Key to  `PUSH_NOTIFICATIONS_SETTINGS['APP_SERVER_KEY']`
+  * Modify the key WP_CLAIMS in settings.py : "sub" with the same email used in the file claim.json. Do not add the "aud", because the push servers could be Mozilla's or Google's, and django-push-notifications takes care of that
 
 ## Install and run the Django server
 
@@ -79,9 +79,11 @@ It features a callback storing the user response when receiving the push notific
  ![Result : how the result displays in Chromium (disable gnome native to see buttons and images)](step-4-chromium-show-push.png)
   * check the status of the notification at http://localhost:8000/admin/webpush/notification/ (`is read`) and http://localhost:8000/admin/webpush/webpushrecord/ (`is sent`)
   * native notifications also can be tested on your mobile device !
+  * in the server, the method that sends the notification to the browser's vendor servers is here https://github.com/jazzband/django-push-notifications/blob/master/push_notifications/webpush.py
 
 ## TODO
 
-  * UI
+  * UI obviously
+  * Better documentation
   * Tests !
   * Replace the booleans `is read` and `is sent` (read previous section) Store a timestamp when sending the notification, store a timestamp when receiving the callback when the user clicks on an action button on the push notification (OK or Forget).
