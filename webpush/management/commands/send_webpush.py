@@ -38,7 +38,7 @@ def to_datetime_argument(string):
 class Command(BaseCommand):
     help = u'''Send push notification for the last notifications, for example :
 
-        $ python manage send_webpush --since=2018-03-03T00:00:00
+        $ python manage.py send_webpush --since=2018-03-03T00:00:00
 
     this will send all waiting web push notifications from march 3rd 2018 until now
     '''

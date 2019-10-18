@@ -13,7 +13,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import re
 import json
 
 from push_notifications.webpush import WebPushError
@@ -32,8 +32,14 @@ def send_web_push(web_push_record, device):
             web_push_record.set_status_ok()
         else:
             web_push_record.set_status_err()
+
     except WebPushError as wperr:
+        # the device subscription is invalid
+        if re.match('410', str(wperr)) is not None:
+            device.is_active = False
+            device.save()
+        # set the record to error
         web_push_record.set_status_err()
-        raise
+        print(wperr)
 
     return web_push_record

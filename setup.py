@@ -13,7 +13,7 @@ setup(
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     scripts=('manage.py',),
-    url='https://github.com/elishowk',
+    url='https://github.com/elishowk/django-webpush-demo',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
@@ -25,8 +25,8 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     install_requires=[
-        'django>=1.11',
-        'django-push-notifications>=1.6',
+        'django>=2.2.6',
+        'django-push-notifications>=1.6.1',
         'djangorestframework',
         'python-dateutil',
     ],

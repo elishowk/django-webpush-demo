@@ -2,7 +2,6 @@
 .vscode
 private_key.pem
 public_key.pem
-claim.json
 TODO
 
 # Byte-compiled / optimized / DLL files
@@ -130,3 +129,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+*.whl
+*.egg-info
