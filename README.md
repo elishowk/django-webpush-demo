@@ -1,12 +1,16 @@
 # django-webpush-demo
 
-A demo django server using jazzband's django-push-notifications (https://github.com/jazzband/django-push-notifications), Django rest framework and web-push-libs modules standardizing Push API (https://github.com/web-push-libs).
+This is a django server using jazzband's django-push-notifications (https://github.com/jazzband/django-push-notifications), Django REST framework and Web-push-libs modules implementation of the Open Standard for Push API with VAPID (https://github.com/web-push-libs).
 
-It features a callback storing the user response when receiving the push notification. It's compatible with any browser supporting native push notifications with the Push API and Service workers (https://developer.mozilla.org/fr/docs/Web/API/Push_API)
+One nice features is the ability to store the user response when interactif with the call-to-actions of the Push notification; yep, did you know that a Push notification can display various CTAs ?
 
- * webpush.js and service-worker.js for the client-side. Notifications are displayed with an default icon, two action buttons (OK, forget), and a click handler opening/focusing the browser on the URL carried by the notification data.
- * webpush/urls.py for the server's API
- * webpush/management/commands/send_webpush.py for server's cron-job to send the pending notifications
+It's compatible with any browser supporting native push notifications with the Push API and Service workers (https://developer.mozilla.org/fr/docs/Web/API/Push_API)
+
+## More important source-code is :
+
+ * `webpush.js` and `service-worker.js`: the client-side code. Notifications are displayed with an default icon, two action buttons (OK, forget), and a click handler opening/focusing the browser on the URL carried by the notification data.
+ * `webpush/urls.py`: the server's API
+ * `webpush/management/commands/send_webpush.py`: server's cron-job to send the pending notifications
 
 ## How-to configure VAPID
 
@@ -40,19 +44,14 @@ It features a callback storing the user response when receiving the push notific
        Application Server Key = BEFuGfKKEFp-kEB...JlkA34llWF0xHya70
 ```
 
-## More...
-
-The web Push API specification : https://developer.mozilla.org/fr/docs/Web/API/Push_API
-A nice demonstration of VAPID is https://gauntface.github.io/simple-push-demo/
-Another nico resource from google.com :https://developers.google.com/web/fundamentals/push-notifications/sending-messages-with-web-push-libraries
-
- * Django settings:
-
-  * Create your own local_settings.py next to settings.py, and add Application Server Key to  `PUSH_NOTIFICATIONS_SETTINGS['APP_SERVER_KEY']`
-  * Modify the key WP_CLAIMS in settings.py : "sub" with the same email used in the file claim.json. Do not add the "aud", because the push servers could be Mozilla's or Google's, and django-push-notifications takes care of that
-
 ## Install and run the Django server
 
+### Configure Django settings:
+
+  * Create your own local_settings.py next to settings.py, and add Application Server Key to  `PUSH_NOTIFICATIONS_SETTINGS['APP_SERVER_KEY']`
+  * Modify the key WP_CLAIMS in settings.py : "sub" with the same email used in the file claim.json. Do not add the "aud" key, because the push servers could be Mozilla's or Google's, and django-push-notifications takes care of that.
+  
+### Launch it !
 ```
     python manage.py migrate
     python manage.py createsuperuser
@@ -71,15 +70,24 @@ Another nico resource from google.com :https://developers.google.com/web/fundame
 
 ```bash
     python manage.py send_webpush
-    
+  
   Found a device id =  8 to push the notification id = 1
 ```
 
   * wait for the notification to show on your device !
  ![Result : how the result displays in Chromium (disable gnome native to see buttons and images)](step-4-chromium-show-push.png)
+ 
   * check the status of the notification at http://localhost:8000/admin/webpush/notification/ (`is read`) and http://localhost:8000/admin/webpush/webpushrecord/ (`is sent`)
-  * native notifications also can be tested on your mobile device !
-  * in the server, the method that sends the notification to the browser's vendor servers is here https://github.com/jazzband/django-push-notifications/blob/master/push_notifications/webpush.py
+  
+  * native notifications also can be tested on your mobile device, and it's really the point of the Web Push API.
+  * server-side, to understand what's going on, you can go and read the code that sends the notification to the browser : https://github.com/jazzband/django-push-notifications/blob/master/push_notifications/webpush.py
+
+## More...
+
+ * The web Push API specification : https://developer.mozilla.org/fr/docs/Web/API/Push_API
+ * A nice demonstration of the VAPID in the browser (brrr... this is unsafe) https://gauntface.github.io/simple-push-demo/
+ * From google.com :https://developers.google.com/web/fundamentals/push-notifications/sending-messages-with-web-push-libraries
+
 
 ## TODO
 
