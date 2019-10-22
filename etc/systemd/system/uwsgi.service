@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI Django service
+
+[Service]
+ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown www-data:www-data /run/uwsgi'
+ExecStart=uwsgi --ini /etc/uwsgi/apps-enabled/uwsgi.ini --plugin python3
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+
