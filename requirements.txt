@@ -6,7 +6,6 @@ cryptography==2.8
 Django==2.2.6
 django-push-notifications==1.6.1
 djangorestframework==3.10.3
--e git+git@github.com:elishowk/django-webpush-demo.git@81bcc4c3c63b26125efa959184af86c6ae23c81b#egg=djangowebpushpoc
 h2==2.6.2
 hpack==3.0.0
 http-ece==1.1.0
