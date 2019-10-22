@@ -88,6 +88,12 @@ It's compatible with any browser supporting native push notifications with the P
  * A nice demonstration of the VAPID in the browser (brrr... this is unsafe) https://gauntface.github.io/simple-push-demo/
  * From google.com :https://developers.google.com/web/fundamentals/push-notifications/sending-messages-with-web-push-libraries
 
+## Deployment.
+
+You need HTTPs to use service workers on your server.
+We provide everything in the `etc` directory to deploy on Debian 10, with python 3.7, uWSGI, systemd, Nginx and Certbot LetsEncrypt. Please read the instructions at :
+ * https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-uwsgi-and-nginx-on-debian-8
+ * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
 
 ## TODO
 
